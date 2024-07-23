@@ -1,0 +1,13 @@
+
+version: 2
+
+models:
+    - name: fact_conversations
+      description: "Please add description"
+      columns:
+          - name: conversation_id
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
+

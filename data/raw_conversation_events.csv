@@ -1,0 +1,40 @@
+event_timestamp,conversation_id,user_id,agent_id,event,event_value
+2019-04-04 1:18:45,56321912435381,301,,customer_message_received,message_anonymised
+2019-04-04 1:18:50,56321912435381,301,,status_changed_to,Open
+2019-04-04 1:18:51,56321912435381,301,,agent_assigned,1
+2019-04-04 4:39:21,56321912435381,301,1,message_sent_to_customer,message_anonymised
+2019-04-04 4:40:51,56321912435381,301,,tag_assigned,payments
+2019-04-04 4:40:52,56321912435381,301,,status_changed_to,Waiting for customer
+2019-04-05 1:32:43,56321912435381,301,,customer_message_received,message_anonymised
+2019-04-05 1:32:44,56321912435381,301,,status_changed_to,Open
+2019-04-05 5:32:43,56321912435381,301,1,message_sent_to_customer,message_anonymised
+2019-04-05 5:32:44,56321912435381,301,,status_changed_to,Closed
+2019-04-04 3:23:31,56321912448077,1032,,customer_message_received,message_anonymised
+2019-04-04 3:23:35,56321912448077,1032,,status_changed_to,Open
+2019-04-04 3:23:36,56321912448077,1032,,agent_assigned,6
+2019-04-04 7:45:24,56321912448077,1032,6,message_sent_to_customer,message_anonymised
+2019-04-04 7:45:25,56321912448077,1032,,tag_assigned,app_question
+2019-04-04 7:45:31,56321912448077,1032,,status_changed_to,Waiting for customer
+2019-04-04 8:21:54,56321912448077,1032,,customer_message_received,message_anonymised
+2019-04-04 8:21:56,56321912448077,1032,,status_changed_to,Open
+2019-04-05 3:54:12,56321912448077,1032,6,message_sent_to_customer,message_anonymised
+2019-04-05 3:54:13,56321912448077,1032,,status_changed_to,Closed
+2019-04-05 4:21:31,56321912448077,1032,,customer_message_received,message_anonymised
+2019-04-05 4:25:41,56321912448077,1032,,tag_assigned,payments
+2019-04-05 4:27:21,56321912448077,1032,,agent_assigned,1
+2019-04-06 3:47:17,56321912448077,1032,1,message_sent_to_customer,message_anonymised
+2019-04-06 3:47:21,56321912448077,1032,,status_changed_to,Closed
+2019-04-04 3:51:12,56321922545952,5024,,customer_message_received,message_anonymised
+2019-04-04 3:51:21,56321922545952,5024,,status_changed_to,Open
+2019-04-04 3:51:22,56321922545952,5024,,agent_assigned,1
+2019-04-04 5:11:16,56321922545952,5024,1,message_sent_to_customer,message_anonymised
+2019-04-04 5:11:19,56321922545952,5024,,tag_assigned,login
+2019-04-04 5:11:21,56321922545952,5024,,status_changed_to,Waiting for customer
+2019-04-04 5:31:45,56321922545952,5024,,customer_message_received,message_anonymised
+2019-04-04 5:31:50,56321922545952,5024,,status_changed_to,Open
+2019-04-04 6:13:55,56321922545952,5024,1,message_sent_to_customer,message_anonymised
+2019-04-04 6:13:57,56321922545952,5024,,status_changed_to,Closed
+2019-04-04 6:35:28,56321922545952,5024,,customer_message_received,message_anonymised
+2019-04-04 6:39:52,56321922545952,5024,,tag_assigned,app_question
+2019-04-04 7:40:47,56321922545952,5024,1,message_sent_to_customer,message_anonymised
+2019-04-04 7:40:53,56321922545952,5024,,status_changed_to,Closed
