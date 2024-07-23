@@ -3,11 +3,57 @@ version: 2
 
 models:
     - name: fact_conversations
-      description: "Please add description"
+      description: "{{ doc('fact_conversation') }}"
       columns:
           - name: conversation_id
-            description: "The primary key for this table"
+            description: "Primary key & unique indentifier for this table"
             tests:
                 - unique
                 - not_null
+          - name: user_id 
+            description: "Foreign key to dim_users table"
+            tests:
+                - not_null 
+          - name: conversation_status 
+            description: "Indicates current status of the conversation/ticket"
+            tests:
+                - accepted_values:
+                    values: ['OPEN','WAITING FOR CUSTOMER','CLOSED']
+          - name: conversation_started_at
+            description: "Indicates when the conversation/ticket was opened by the user"
+            tests:
+                - not_null
+          - name: number_involved_agents
+            description: "Total number of agents involved in a conversation with the user"
+            tests:
+                - not_null
 
+    - name: fact_conversations_incremental
+      description: "{{ doc('fact_conversation_incremental') }}"
+      columns:
+          - name: conversation_id
+            description: "Primary key & unique indentifier for this table"
+            tests:
+                - unique
+                - not_null
+          - name: user_id 
+            description: "Foreign key to dim_users table"
+            tests:
+                - not_null 
+          - name: conversation_status 
+            description: "Indicates current status of the conversation/ticket"
+            tests:
+                - accepted_values:
+                    values: ['OPEN','WAITING FOR CUSTOMER','CLOSED']
+          - name: updated_at
+            description: "Indicates the timestamp when the last update was made for a conversation"
+            tests:
+                - not_null
+          - name: conversation_started_at
+            description: "Indicates when the conversation/ticket was opened by the user"
+            tests:
+                - not_null
+          - name: number_involved_agents
+            description: "Total number of agents involved in a conversation with the user"
+            tests:
+                - not_null
