@@ -1,0 +1,29 @@
+
+version: 2
+
+models:
+    - name: stg_conversation_events
+      description: "This table logs all details of interaction between the customer and our agents"
+      columns:
+          - name: event_timestamp 
+            description: "Indicates when the event occurred"
+            tests:
+                - not_null
+          - name: conversation_id
+            description: "Unique indentifier for conversations"
+            tests:
+                - not_null
+          - name: user_id 
+            description: "Unique indentifier for users & foreign key to dim_users table"
+            tests:
+                - not_null 
+          - name: agent_id
+            description: "Unique indentifier for agents & foreign key to dim_agent table"
+          - name: event
+            description: "Identifies what kind of event occurrend in a conversation"
+            tests:
+                - not_null
+          - name: event_value
+            description: "Indicates the outcome of that event"
+            tests:
+                - not_null
