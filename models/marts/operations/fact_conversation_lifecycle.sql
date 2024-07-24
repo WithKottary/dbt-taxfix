@@ -1,3 +1,4 @@
+{{ config(materialized='table') }}
 WITH source_data AS (
     SELECT
         event_timestamp
