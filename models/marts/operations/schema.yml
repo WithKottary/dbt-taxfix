@@ -1,0 +1,112 @@
+
+version: 2
+
+models:
+    - name: dim_date
+      description: "Table generates time series from 2016 to 2100 on a daily basis"
+      columns:
+          - name: date 
+            description: "Represents date in YYYY-MM-DD format"
+            tests:
+                - unique
+                - not_null
+          - name: year
+            description: "Represents the year"
+            tests:
+                - not_null
+          - name: month 
+            description: "Represents the month"
+            tests:
+                - not_null 
+          - name: day 
+            description: "Represents the day in the month between 1 and 31"
+            tests:
+                - not_null 
+          - name: day_of_week
+            description: "Represents the day of the week between 0 and 6"
+            tests:
+                - not_null
+          - name: week_of_year
+            description: "Represents the week of the year between 1 and 53"
+            tests:
+                - not_null
+
+    - name: dim_user
+      description: "Table gives information of our customer demographics"
+      columns:
+          - name: id 
+            description: "Primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: first_name
+            description: "First name of the customer"
+          - name: last_name 
+            description: "Last name of the customer"
+          - name: email 
+            description: "Email of the customer"
+          - name: phone
+            description: "Phone of the customer"
+          - name: country
+            description: "Country of residence of the customer"
+
+    - name: dim_agent
+      description: "Table gives information of our company agents"
+      columns:
+          - name: id 
+            description: "Primary key for this table"
+            tests:
+                - unique
+                - not_null
+          - name: first_name
+            description: "First name of the customer"
+          - name: last_name 
+            description: "Last name of the customer"
+          - name: email 
+            description: "Email of the customer"
+          - name: phone
+            description: "Phone of the customer"
+          - name: supervisor_id
+            description: "Agent's Supervisor unique identifier"
+          - name: department
+            description: "Department of the agent"
+
+    - name: fact_conversation_lifecycle
+      description: "{{ doc('fact_conversation_lifecycle')}}"
+      columns:
+          - name: id
+            description: "Unique indentifier for conversations"
+            tests:
+                - unique
+                - not_null
+          - name: user_id 
+            description: "Unique indentifier for users & foreign key to dim_users table"
+            tests:
+                - not_null 
+          - name: status
+            description: "Indicates current status of the conversation/ticket"
+            tests:
+                - accepted_values:
+                    values: ['OPEN','WAITING FOR CUSTOMER','CLOSED']
+          - name: opened_at
+            description: "Timestamp when the conversation started or customer reached out"
+            tests:
+                - not_null
+          - name: closed_at
+            description: "Timestamp when the conversation concluded or NULL if it is still ongoing"
+          - name: number_involved_agents
+            description: "Indicates how many agents are involved in the conversation"
+          - name: number_tags_assigned
+            description: "Indicates how many tags were assigned in the conversation"
+          - name: interaction_between_customer
+            description: "Indicates how many interaction occurred, back and forth between the customer and agent/s in the conversation"
+          - name: hours_to_resolve
+            description: "Time taken in hours to resolve the enquiry. It will be NULL if the enquiry is still in process"
+          - name: payments_related
+            description: "Indicates if the conversation had enquiry about payments. If so then 1 will be populated, if not then 0 will be populated"
+          - name: app_related
+            description: "Indicates if the conversation had enquiry about the app. If so then 1 will be populated, if not then 0 will be populated"
+          - name: login_related
+            description: "Indicates if the conversation had enquiry about login issue. If so then 1 will be populated, if not then 0 will be populated"
+
+    
