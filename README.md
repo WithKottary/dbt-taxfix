@@ -22,6 +22,7 @@ Generated documentation can be accessed by clicking on **_"page-like"_** icon pr
 #### _Change the current data loading mechanism for fact_conversations table from full load to incremental load._
 
 Repository: [dbt-taxfix](https://github.com/WithKottary/dbt-taxfix/blob/main/models/operations/fact_conversations_incremental.sql)
+
 Incremental model is implemented as a sperate model under _models/operations/fact_conversations_incremental.sql_ & documentation can be found [here](https://withkottary.github.io/dbt-taxfix/#!/model/model.home_assignment.fact_conversations_incremental)
 
 fact_conversations_incremental.sql 
@@ -67,31 +68,31 @@ from conversation_agg
 ## _Part 2: Fixing stakeholders needs_
 ### Task 2
 #### _Which questions for clarification would you ask that stakeholder?_
-- How do you define "contact reasons" in the context of these conversation events? 
+- How do you define "contact reasons" in the context of these conversation events?   
 _This question aims to clarify how the tags in the conversation events relate to contact reasons, as it seems there might be a mapping or categorization process involved._
 
-- What specific metrics or insights are you looking to extract from the conversation events?
+- What specific metrics or insights are you looking to extract from the conversation events?  
 _The specification of the particular metrics or insights required will steer the design of the new model and the queries needed to extract this information._
 
-- Are there any other metrics or KPIs you are looking to calculate?
+- Are there any other metrics or KPIs you are looking to calculate?  
 _For example, the average duration of conversations for each tag or the frequency of tags per user._
 
-- Are there any specific dimensions or attributes outside of the current model that should be included in the analysis?
+- Are there any specific dimensions or attributes outside of the current model that should be included in the analysis?  
 _It's possible that additional contextual information could enhance the analysis, such as user demographics, agent details, or other event types not currently captured._
 
-- Over what time period would you like to track the change in contact reasons? Do you want to analyze the tags on a daily, weekly, monthly, or yearly basis? Do you need historical data to be considered?
+- Over what time period would you like to track the change in contact reasons? Do you want to analyze the tags on a daily, weekly, monthly, or yearly basis? Do you need historical data to be considered?  
 _Knowing whether you need historical data or just snapshots at certain times & details of the timeframe will influence the granularity of the model._
 
-- How often would you need this data refreshed or updated?
+- How often would you need this data refreshed or updated?  
 _The frequency of access will impact the performance considerations of the model, especially if real-time or near-real-time analytics are required._
 
-- How would you like the results to be presented? For example, as dashboards on our BI tool, or as tables? (depending if the stakeholder/end-user is technial or buisness related)
+- How would you like the results to be presented? For example, as dashboards on our BI tool, or as tables? (depending if the stakeholder/end-user is technial or buisness related) 
 _This will allow us to plan efficiently & let us know if the ticket needs to be handed over to the Business Intelligence/Reporting team for visualization tasks_
 
 ### Task 2
 #### _Create tickets/ epics for the task above. You may base the ticket specification on reasonable responses from your clarifying questions above._
 
-Assumption: 
+***Assumption:*** 
 - Assuming that the requirement is to enrich the fact_conversations model & maintain it's structural integrity (due to downstream impact on production data)
 - Contact reason is the same as tags assigned (1 to 1 mapping). No categorization such as payments = finance & app_question, login = technical
 - For dimension tables certain columns are assumed to be available
@@ -143,7 +144,7 @@ Based on that data in RAW_CONVERSATIONS_EVENTS, i would introduce dim_date, dim_
 - Contact reason is the same as tags assigned (1 to 1 mapping). No categorization such as payments = finance & app_question, login = technical
 - For dimension tables certain columns are assumed to be available
 - Although dim_agent has no relation to fact_conversations table, it is assumed that there are other tables outside the scope of the data presented in this case study to which agent as a relation to. Hence we will proceed to create dim_agent
-- Provided data is not sufficient to assume that there is an  ***tags*** source. In the event that ***tags*** are defined say in a CRM tool like salesforce then we can have dim_tags as a dimension. In this scenario, the microservice that logs conversation_events will need to incorporate tag_id 
+- Provided data is not sufficient to assume that there is a  ***tags*** source. In the event that ***tags*** are defined say in a CRM tool like salesforce then we can have dim_tags as a dimension. In this scenario, the microservice that logs conversation_events will need to incorporate tag_id 
 
 ***IMPORTANT*** 
 **- fact_conversations is renamed to fact_conversation_lifecycle in order to avoid conflict with fact_conversations model provided at the start of the case study.**
@@ -185,11 +186,11 @@ FROM date_generation
 {{ config(materialized='table') }}
 SELECT DISTINCT
     user_id as id,
-    'TO_BE_CONUSMED_FROM_SOURCE' AS first_name,  -- Placeholder, replace with actual user name field
-    'TO_BE_CONUSMED_FROM_SOURCE' AS last_name,   -- Placeholder, replace with actual user name field
-    'TO_BE_CONUSMED_FROM_SOURCE' AS email,       -- Placeholder, replace with actual user email field
-    'TO_BE_CONUSMED_FROM_SOURCE' AS phone,       -- Placeholder, replace with actual user email field
-    'TO_BE_CONUSMED_FROM_SOURCE' AS country      -- Placeholder, replace with actual user email field
+    'TO_BE_CONUSMED_FROM_SOURCE' AS first_name,  -- Placeholder, replace with actual first name field
+    'TO_BE_CONUSMED_FROM_SOURCE' AS last_name,   -- Placeholder, replace with actual last name field
+    'TO_BE_CONUSMED_FROM_SOURCE' AS email,       -- Placeholder, replace with actual email field
+    'TO_BE_CONUSMED_FROM_SOURCE' AS phone,       -- Placeholder, replace with actual phone field
+    'TO_BE_CONUSMED_FROM_SOURCE' AS country      -- Placeholder, replace with actual country field
 FROM {{ ref('stg_conversation_events') }}  
 ```
 
@@ -198,12 +199,12 @@ FROM {{ ref('stg_conversation_events') }}
 {{ config(materialized='table') }}
 SELECT DISTINCT
     agent_id as id,                                 
-    'TO_BE_CONUSMED_FROM_SOURCE' AS first_name,      -- Placeholder, replace with actual agent email field
-    'TO_BE_CONUSMED_FROM_SOURCE' AS last_name,       -- Placeholder, replace with actual agent email field
-    'TO_BE_CONUSMED_FROM_SOURCE' AS email,           -- Placeholder, replace with actual agent email field
-    'TO_BE_CONUSMED_FROM_SOURCE' AS phone,           -- Placeholder, replace with actual agent email field
-    'TO_BE_CONUSMED_FROM_SOURCE' AS supervisor_id,   -- Placeholder, replace with actual agent email field
-    'TO_BE_CONUSMED_FROM_SOURCE' AS department,      -- Placeholder, replace with actual agent email field
+    'TO_BE_CONUSMED_FROM_SOURCE' AS first_name,      -- Placeholder, replace with actual first name field
+    'TO_BE_CONUSMED_FROM_SOURCE' AS last_name,       -- Placeholder, replace with actual last name field
+    'TO_BE_CONUSMED_FROM_SOURCE' AS email,           -- Placeholder, replace with actual email field
+    'TO_BE_CONUSMED_FROM_SOURCE' AS phone,           -- Placeholder, replace with actual phone field
+    'TO_BE_CONUSMED_FROM_SOURCE' AS supervisor_id,   -- Placeholder, replace with actual supervisor id field
+    'TO_BE_CONUSMED_FROM_SOURCE' AS department,      -- Placeholder, replace with actual department field
 FROM {{ ref('stg_conversation_events') }} 
 WHERE agent_id IS NOT NULL  
 ```
@@ -249,9 +250,9 @@ FROM conversation_agg
 Please find ERD to the proposed dimensional modelling [ERD_TAXFIX](https://drive.google.com/file/d/1BLCTF_jT9t8ZJED95tzhotgKs5wVIaJO/view?usp=sharing) & the supporting code is present under ***models/marts/*** & ***models/staging/*** in the [dbt-taxfix](https://github.com/WithKottary/dbt-taxfix) repository
 
 > Alternatively, i would like to propose another approach where we can retain data from  **raw_conversation_events** as a [***factless***](https://www.kimballgroup.com/data-warehouse-business-intelligence-resources/kimball-techniques/dimensional-modeling-techniques/factless-fact-table/) fact table i.e. fact_conversation_events 
-- Events and Transactions: Each row in the table represents an event or transaction (e.g., customer messages received, status changes, agent assignments) that has occurred within a conversation.
-- Measures and Facts: Although there are no traditional numeric measures, the events themselves are the facts being recorded. The EVENT_TIMESTAMP is a measure of when each event occurred.
-- Granular Data: The data is very granular, capturing individual events as they happen.
+> - Events and Transactions: Each row in the table represents an event or transaction (e.g., customer messages received, status changes, agent assignments) that has occurred within a conversation.
+> - Measures and Facts: Although there are no traditional numeric measures, the events themselves are the facts being recorded. The EVENT_TIMESTAMP is a measure of when each event occurred.
+> - Granular Data: The data is very granular, capturing individual events as they happen.
 
 > As the case study presents a very small subset of data, it is not possible to fully understand how these data interact. For example: Are there more tags? How will new tags be introduced? What if we decide to upgrade the app as Taxfix grows and incorporate new types of events?
 
